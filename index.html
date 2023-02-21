@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+
+        #header {
+            background-color: #fff;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #logo {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+        }
+
+        #nav {
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #nav li {
+            margin: 10px;
+        }
+
+        #nav a {
+            text-decoration: none;
+            color: #262626;
+        }
+
+        #nav .active a {
+            color: #000;
+        }
+
+        #content {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+        }
+
+        .post {
+            margin: 30px 0;
+            border: 1px solid #dbdbdb;
+            background-color: #fff;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .post-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .post-header h3 {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .post-body img {
+            width: 100%;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .post-footer i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        #footer {
+            background-color: #fff;
+            border-top: 1px solid #dbdbdb;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">Instagram</div>
+        <div>
+            <i class="fas fa-search"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-user"></i>
+        </div>
+    </div>
+    <div id="nav">
+        <ul>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="chat.html">Messages</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div class="post">
+            <div class="post-header">
+                <img src="https://picsum.photos/200/300" alt="User profile">
+                <h3>Username</h3>
+            </div>
+            <div class="post-body">
+                <img src="https://picsum.photos/500/500" alt="Post image">
+            </div>
+            <div class="post-footer">
+                <div>
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-paper-plane"></i>
+                </div>
+                <div>
+                    <i class="far fa-bookmark"></i>
+                </div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <img src="https://picsum.photos/200/300" alt="User profile">
+                <h3>Username</h3>
+            </div>
+            <div class="post-body">
+                <img src="https://picsum.photos/500/500" alt="Post image">
+            </div>
+            <div class="post-footer">
+                <div>
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-paper-plane"></i>
+                </div>
+                <div>
+                    <i class="far fa-bookmark"></i>
+                </div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <img src="https://picsum.photos/200/300" alt="User profile">
+                <h3>Username</h3>
+            </div>
+            <div class="post-body">
+                <img src="https://picsum.photos/500/500" alt="Post image">
+            </div>
+            <div class="post-footer">
+                <div>
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-paper-plane"></i>
+                </div>
+                <div>
+                    <i class="far fa-bookmark"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p>© 2023 Social Network Application</p>
+    </div>
+
+</body>
+
+</html>

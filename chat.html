@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+    <div id="header">
+      <div id="logo">Instagram</div>
+      <div>
+        <i class="fas fa-search"></i>
+        <i class="far fa-heart"></i>
+        <i class="far fa-user"></i>
+      </div>
+    </div>
+    <div id="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="chat.html">Messages</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <div id="user-list">
+        <ul>
+          <li class="active">
+            <img src="https://picsum.photos/50/50" alt="User profile">
+            <div>
+              <h4>Username 1</h4>
+            </div>
+          </li>
+          <li>
+            <img src="https://picsum.photos/50/50" alt="User profile">
+            <div>
+              <h4>Username 2</h4>
+            </div>
+          </li>
+          <li>
+            <img src="https://picsum.photos/50/50" alt="User profile">
+            <div>
+              <h4>Username 3</h4>
+            </div>
+          </li>
+          <li>
+            <img src="https://picsum.photos/50/50" alt="User profile">
+            <div>
+              <h4>Username 4</h4>
+            </div>
+          </li>
+    </div>
+    <div>
+        <div id="chat">
+          <div class="message received">
+            <div class="avatar">
+              <img src="https://picsum.photos/50/50" alt="User profile">
+            </div>
+            <div class="text">
+              <div class="message-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </div>
+            </div>
+          </div>
+          <div class="message received">
+            <div class="avatar">
+              <img src="https://picsum.photos/50/50" alt="User profile">
+            </div>
+            <div class="text">
+              <div class="message-content">
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+              </div>
+            </div>
+          </div>
+          <div class="message sent">
+            <div class="avatar">
+              <img src="https://picsum.photos/50/50" alt="User profile">
+            </div>
+            <div class="text">
+              <div class="message-content">
+                Nunc porta lobortis dolor, eu lacinia lorem dictum nec.
+              </div>
+            </div>
+          </div>
+          <div class="message sent">
+            <div class="avatar">
+              <img src="https://picsum.photos/50/50" alt="User profile">
+            </div>
+            <div class="text">
+              <div class="message-content">
+                Cras ac dui eleifend, malesuada odio quis, aliquam ante.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="message-input-container">
+          <form>
+            <input type="text" placeholder="Type a message...">
+            <button title="submit" type="submit"><i class="far fa-paper-plane"></i></button>
+          </form>
+        </div>
+    </div>
+  </div>
