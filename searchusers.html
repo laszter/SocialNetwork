@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Instagram - Search Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+        }
+    
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 30px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    
+        #logo {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+        }
+    
+        #header i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+    
+        #content {
+            margin: auto;
+            max-width: 600px;
+            padding: 20px;
+        }
+    
+        #search-form {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        #search-form h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    
+        #search-form form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    
+        input {
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            width: 100%;
+        }
+    
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #fafafa;
+        }
+    
+        #search-results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    
+        .user {
+            width: 30%;
+            margin-bottom: 20px;
+            border: 1px solid #dbdbdb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    
+        .user-image {
+            height: 200px;
+            overflow: hidden;
+        }
+    
+        .user-image img {
+            width: 100%;
+            height: auto;
+        }
+    
+        .user-details {
+            padding: 20px;
+        }
+    
+        .username {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    
+        .name {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+    
+        .follow-button {
+            padding: 10px 20px;
+            background-color: #3897f0;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    
+        .follow-button:hover {
+            background-color: #2680c2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">Instagram</div>
+        <div>
+            <i class="fas fa-search"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-user"></i>
+        </div>
+    </div>
+    <div id="content">
+        <div id="search-form">
+            <h2>Search Users</h2>
+            <form>
+                <div class="form-group">
+                    <label for="search">Search</label>
+                    <input type="text" id="search" name="search" required>
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div id="search-results">
+            <div class="user">
+                <div class="user-image">
+                    <img src="https://picsum.photos/200/200" alt="User image">
+                </div>
+                <div class="user-details">
+                    <div class="username">johndoe</div>
+                    <div class="name">John Doe</div>
+                    <button class="follow-button">Follow</button>
+                </div>
+            </div>
+            <div class="user">
+                <div class="user-image">
+                    <img src="https://picsum.photos/200/201" alt="User image">
+                </div>
+                <div class="user-details">
+                    <div class="username">janedoe</div>
+                    <div class="name">Jane Doe</div>
+                    <button class="follow-button">Follow</button>
+                </div>
+            </div>
+            <div class="user">
+                <div class="user-image">
+                    <img src="https://picsum.photos/201/200" alt="User image">
+                </div>
+                <div class="user-details">
+                    <div class="username">bobsmith</div>
+                    <div class="name">Bob Smith</div>
+                    <button class="follow-button">Follow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

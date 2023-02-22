@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Followers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 30px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        #logo {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+        }
+
+        #header i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        #content {
+            margin: auto;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        #followers-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #followers-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        #followers-count {
+            font-size: 1.2rem;
+            color: #8e8e8e;
+        }
+
+        #followers-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .follower {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .follower-image {
+            height: 50px;
+            width: 50px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .follower-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .follower-details {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+
+        .username {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .follow-button {
+            padding: 5px 10px;
+            background-color: #3897f0;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .follow-button:hover {
+            background-color: #2680c2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">Instagram</div>
+        <div>
+            <i class="fas fa-search"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-user"></i>
+        </div>
+    </div>
+    <div id="content">
+        <div id="followers-header">
+            <h2>Followers</h2>
+            <div id="followers-count">5 followers</div>
+        </div>
+        <div id="followers-list">
+            <div class="follower">
+                <div class="follower-image">
+                    <img src="https://picsum.photos/200/200" alt="Follower image">
+                </div>
+                <div class="follower-details">
+                    <div class="username">johndoe</div>
+                    <button class="follow-button">Follow</button>
+                </div>
+            </div>
+            <div class="follower">
+                <div class="follower-image">
+                    <img src="https://picsum.photos/200/201" alt="Follower image">
+                </div>
+                <div class="follower-details">
+                    <div class="username">janedoe</div>
+                    <button class="follow-button">Follow</button>
+                </div>
+            </div>
+            <div class="follower">
+                <div class="follower-image">
+                    <img src="https://picsum.photos/201/200" alt="Follower image">
+                </div>
+                <div class="follower-details">
+                    <div class="username">bobsmith</div>
+                    <button class="follow-button">Follow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
