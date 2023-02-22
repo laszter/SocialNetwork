@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +27,7 @@
         }
 
         #logo {
-            font-family: 'Lobster', cursive;
+            font-family: Arial, sans-serif;
             font-size: 2rem;
         }
 
@@ -105,16 +106,26 @@
         .follow-button:hover {
             background-color: #2680c2;
         }
+
+        .menu-nav-icon a {
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
+    <div id="menu-nav-bar">
+        <a href="index.html" title="home"><i class="fa-solid fa-house"></i></a>
+        <a href="searchusers.html" title="searchusers"><i class="fas fa-search"></i></a>
+        <a href="post.html" title="post"><i class="fa-regular fa-square-plus"></i></a>
+        <a href="profile.html" title="profile"><i class="far fa-user"></i></a>
+    </div>
     <div id="header">
         <div id="logo">Instagram</div>
-        <div>
-            <i class="fas fa-search"></i>
+        <div class="menu-nav-icon">
             <i class="far fa-heart"></i>
-            <i class="far fa-user"></i>
+            <a href="chat.html" title="chat"><i class="fa-regular fa-comment"></i></a>
         </div>
     </div>
     <div id="content">

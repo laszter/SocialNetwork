@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fafafa;
+            margin: 0;
         }
 
         #header {
-            background-color: #fff;
-            border-bottom: 1px solid #dbdbdb;
-            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: #fff;
+            padding: 10px 30px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         #logo {
@@ -29,31 +31,9 @@
             font-size: 2rem;
         }
 
-        #nav {
-            background-color: #fff;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        #nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        #nav li {
-            margin: 10px;
-        }
-
-        #nav a {
-            text-decoration: none;
-            color: #262626;
-        }
-
-        #nav .active a {
-            color: #000;
+        #header i {
+            margin-left: 10px;
+            font-size: 1.2rem;
         }
 
         #content {
@@ -109,24 +89,29 @@
             border-top: 1px solid #dbdbdb;
             padding: 20px;
             text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .menu-nav-icon a {
+            text-decoration: none;
+            color: black;
         }
     </style>
 </head>
 
 <body>
+    <div id="menu-nav-bar">
+        <a href="index.html" title="home"><i class="fa-solid fa-house"></i></a>
+        <a href="searchusers.html" title="searchusers"><i class="fas fa-search"></i></a>
+        <a href="post.html" title="post"><i class="fa-regular fa-square-plus"></i></a>
+        <a href="profile.html" title="profile"><i class="far fa-user"></i></a>
+    </div>
     <div id="header">
         <div id="logo">Instagram</div>
-        <div>
-            <i class="fas fa-search"></i>
+        <div class="menu-nav-icon">
             <i class="far fa-heart"></i>
-            <i class="far fa-user"></i>
+            <a href="chat.html" title="chat"><i class="fa-regular fa-comment"></i></a>
         </div>
-    </div>
-    <div id="nav">
-        <ul>
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="chat.html">Messages</a></li>
-        </ul>
     </div>
     <div id="content">
         <div class="post">
@@ -188,7 +173,7 @@
         </div>
     </div>
     <div id="footer">
-        <p>© 2023 Social Network Application</p>
+        <p>© 2023 Test App</p>
     </div>
 
 </body>

@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fafafa;
             margin: 0;
         }
-    
+
         #header {
             display: flex;
             justify-content: space-between;
@@ -24,23 +25,24 @@
             padding: 10px 30px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
-    
+
         #logo {
             font-family: Arial, sans-serif;
             font-size: 2rem;
         }
-    
+
         #header i {
             margin-left: 10px;
             font-size: 1.2rem;
         }
-    
+
         #content {
             margin: auto;
             max-width: 600px;
             padding: 20px;
+            padding-bottom: 60px;
         }
-    
+
         #search-form {
             background-color: #fff;
             border: 1px solid #dbdbdb;
@@ -50,30 +52,30 @@
             text-align: center;
             margin-bottom: 20px;
         }
-    
+
         #search-form h2 {
             font-size: 2rem;
             font-weight: 600;
             margin-bottom: 20px;
         }
-    
+
         #search-form form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-    
+
         .form-group {
             margin-bottom: 20px;
         }
-    
+
         label {
             display: block;
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 10px;
         }
-    
+
         input {
             padding: 10px;
             border: 1px solid #dbdbdb;
@@ -81,7 +83,7 @@
             font-size: 1.2rem;
             width: 100%;
         }
-    
+
         button[type="submit"] {
             padding: 10px 20px;
             background-color: #fff;
@@ -90,17 +92,17 @@
             font-size: 1rem;
             cursor: pointer;
         }
-    
+
         button[type="submit"]:hover {
             background-color: #fafafa;
         }
-    
+
         #search-results {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-    
+
         .user {
             width: 30%;
             margin-bottom: 20px;
@@ -109,32 +111,32 @@
             border-radius: 5px;
             overflow: hidden;
         }
-    
+
         .user-image {
             height: 200px;
             overflow: hidden;
         }
-    
+
         .user-image img {
             width: 100%;
             height: auto;
         }
-    
+
         .user-details {
             padding: 20px;
         }
-    
+
         .username {
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 10px;
         }
-    
+
         .name {
             font-size: 1rem;
             margin-bottom: 10px;
         }
-    
+
         .follow-button {
             padding: 10px 20px;
             background-color: #3897f0;
@@ -144,20 +146,30 @@
             font-size: 1rem;
             cursor: pointer;
         }
-    
+
         .follow-button:hover {
             background-color: #2680c2;
+        }
+
+        .menu-nav-icon a {
+            text-decoration: none;
+            color: black;
         }
     </style>
 </head>
 
 <body>
+    <div id="menu-nav-bar">
+        <a href="index.html" title="home"><i class="fa-solid fa-house"></i></a>
+        <a href="searchusers.html" title="searchusers"><i class="fas fa-search"></i></a>
+        <a href="post.html" title="post"><i class="fa-regular fa-square-plus"></i></a>
+        <a href="profile.html" title="profile"><i class="far fa-user"></i></a>
+    </div>
     <div id="header">
         <div id="logo">Instagram</div>
-        <div>
-            <i class="fas fa-search"></i>
+        <div class="menu-nav-icon">
             <i class="far fa-heart"></i>
-            <i class="far fa-user"></i>
+            <a href="chat.html" title="chat"><i class="fa-regular fa-comment"></i></a>
         </div>
     </div>
     <div id="content">
