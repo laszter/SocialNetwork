@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 30px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        #logo {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+        }
+
+        #header i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        #content {
+            margin: auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        #profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        #profile-image {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-right: 40px;
+        }
+
+        #profile-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        #profile-details {
+            flex-grow: 1;
+        }
+
+        #username {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #post-stats {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        #post-stats div {
+            margin-right: 20px;
+        }
+
+        #post-stats div:last-child {
+            margin-right: 0;
+        }
+
+        #post-stats strong {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        #bio {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        #edit-profile-button {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        #edit-profile-button:hover {
+            background-color: #fafafa;
+        }
+
+        #post-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1px;
+        }
+
+        .post {
+            overflow: hidden;
+            border: 1px solid #dbdbdb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .post img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">Instagram</div>
+        <div>
+            <i class="fas fa-search"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-user"></i>
+        </div>
+    </div>
+    <div id="content">
+        <div id="profile-header">
+            <div id="profile-image">
+                <img src="https://picsum.photos/200/200" alt="Profile image">
+            </div>
+            <div id="profile-details">
+                <div id="username">johndoe</div>
+                <div id="post-stats">
+                    <div><strong>12</strong> posts</div>
+                    <div><strong>128</strong> followers</div>
+                    <div><strong>99</strong> following</div>
+                </div>
+                <div id="bio">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+                </div>
+                <button id="edit-profile-button">Edit Profile</button>
+            </div>
+        </div>
+        <div id="post-grid">
+            <div class="post">
+                <img src="https://picsum.photos/400/400" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/400/401" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/401/400" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/401/401" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/400/400" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/400/401" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/401/400" alt="Post image">
+            </div>
+            <div class="post">
+                <img src="https://picsum.photos/401/401" alt="Post image">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

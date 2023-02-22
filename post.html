@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Instagram - Upload Post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+        }
+    
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 30px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    
+        #logo {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+        }
+    
+        #header i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+    
+        #content {
+            margin: auto;
+            max-width: 600px;
+            padding: 20px;
+        }
+    
+        #upload-form {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+        }
+    
+        h2 {
+            margin-top: 0;
+        }
+    
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+    
+        label {
+            margin-bottom: 10px;
+        }
+    
+        input[type="file"],
+        textarea {
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #2680c2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">Instagram</div>
+        <div>
+            <i class="fas fa-search"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-user"></i>
+        </div>
+    </div>
+    <div id="content">
+        <div id="upload-form">
+            <h2>Upload Post</h2>
+            <form>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="caption">Caption</label>
+                    <textarea id="caption" name="caption" rows="4" required></textarea>
+                </div>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
