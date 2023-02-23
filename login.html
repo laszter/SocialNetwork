@@ -1,76 +1,152 @@
 <!DOCTYPE html>
 <html lang="th">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+    }
+
+    form {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+      background-color: #fff;
+      padding: 30px;
+      border: 1px solid #dbdbdb;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 3rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    button {
+      display: block;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #3897f0;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #38a1db;
+    }
+
+    #signup {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #error-msg-text {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <h1>Instagram</h1>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+    <label id="error-msg-text"></label>
+    <button type="submit">Log in</button>
+    <div id="signup">
+      Don't have an account? <a href="signup.html">Sign up</a>
+    </div>
+  </form>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJBvoYxlajNR9MuQUmuZApTkMiE8KG4YU",
+      authDomain: "earthanalysis.firebaseapp.com",
+      databaseURL: "https://earthanalysis.firebaseio.com",
+      projectId: "earthanalysis",
+      storageBucket: "earthanalysis.appspot.com",
+      messagingSenderId: "975966447787",
+      appId: "1:975966447787:web:aa6d02c627e563a7392fee",
+      measurementId: "G-35YFT2HDZL"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     
-    <title>Login</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #fafafa;
-      }
-      form {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        background-color: #fff;
-        padding: 30px;
-        border: 1px solid #dbdbdb;
-      }
-      h1 {
-        text-align: center;
-        font-family: Arial, sans-serif;
-        font-size: 3rem;
-      }
-      label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
-      input[type="text"],
-      input[type="password"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #dbdbdb;
-        border-radius: 3px;
-        box-sizing: border-box;
-      }
-      button {
-        display: block;
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #3897f0;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #38a1db;
-      }
-      #signup {
-        text-align: center;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <form>
-      <h1>Instagram</h1>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
-      <button type="submit">Log in</button>
-      <div id="signup">
-        Don't have an account? <a href="signup.html">Sign up</a>
-      </div>
-    </form>
-  </body>
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          window.location = "index.html";
+          // ...
+        } else {
+          // User is signed out
+          // ...
+        }
+      });
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.querySelector("#username").value;
+        const password = document.querySelector("#password").value;
+        signInWithEmailAndPassword(auth, username, password)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            document.querySelector("#error-msg-text").innerHTML = errorMessage;
+          });
+      });
+    })
+  </script>
+</body>
+
 </html>

@@ -128,7 +128,7 @@
             height: auto;
         }
 
-        .menu-nav-icon a{
+        .menu-nav-icon a {
             text-decoration: none;
             color: black;
         }
@@ -147,6 +147,7 @@
         <div class="menu-nav-icon">
             <i class="far fa-heart"></i>
             <a href="chat.html" title="chat"><i class="fa-regular fa-comment"></i></a>
+            <a href="#" title="logout" id="signout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </div>
     <div id="content">
@@ -194,6 +195,47 @@
             </div>
         </div>
     </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJBvoYxlajNR9MuQUmuZApTkMiE8KG4YU",
+            authDomain: "earthanalysis.firebaseapp.com",
+            databaseURL: "https://earthanalysis.firebaseio.com",
+            projectId: "earthanalysis",
+            storageBucket: "earthanalysis.appspot.com",
+            messagingSenderId: "975966447787",
+            appId: "1:975966447787:web:aa6d02c627e563a7392fee",
+            measurementId: "G-35YFT2HDZL"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const signoutBtn = document.getElementById('signout-btn');
+            signoutBtn.addEventListener('click', function () {
+                const auth = getAuth();
+                signOut(auth).then(() => {
+                    // Sign-out successful.
+                    window.location = 'login.html'
+                }).catch((error) => {
+                    // An error happened.
+                    console.log(error);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
