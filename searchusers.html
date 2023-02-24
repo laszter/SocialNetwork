@@ -151,7 +151,7 @@
             background-color: #2680c2;
         }
 
-        .menu-nav-icon a {
+        .menu-nav-icon a, .user-details a {
             text-decoration: none;
             color: black;
         }
@@ -163,7 +163,7 @@
         <a href="index.html" title="home"><i class="fa-solid fa-house"></i></a>
         <a href="searchusers.html" title="searchusers"><i class="fas fa-search"></i></a>
         <a href="post.html" title="post"><i class="fa-regular fa-square-plus"></i></a>
-        <a href="profile.html" title="profile"><i class="far fa-user"></i></a>
+        <a href="profile.html" title="profile" id="myprofile"><i class="far fa-user"></i></a>
     </div>
     <div id="header">
         <div id="logo">Instagram</div>
@@ -184,38 +184,100 @@
             </form>
         </div>
         <div id="search-results">
-            <div class="user">
-                <div class="user-image">
-                    <img src="https://picsum.photos/200/200" alt="User image">
-                </div>
-                <div class="user-details">
-                    <div class="username">johndoe</div>
-                    <div class="name">John Doe</div>
-                    <button class="follow-button">Follow</button>
-                </div>
-            </div>
-            <div class="user">
-                <div class="user-image">
-                    <img src="https://picsum.photos/200/201" alt="User image">
-                </div>
-                <div class="user-details">
-                    <div class="username">janedoe</div>
-                    <div class="name">Jane Doe</div>
-                    <button class="follow-button">Follow</button>
-                </div>
-            </div>
-            <div class="user">
-                <div class="user-image">
-                    <img src="https://picsum.photos/201/200" alt="User image">
-                </div>
-                <div class="user-details">
-                    <div class="username">bobsmith</div>
-                    <div class="name">Bob Smith</div>
-                    <button class="follow-button">Follow</button>
-                </div>
-            </div>
         </div>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJBvoYxlajNR9MuQUmuZApTkMiE8KG4YU",
+            authDomain: "earthanalysis.firebaseapp.com",
+            databaseURL: "https://earthanalysis.firebaseio.com",
+            projectId: "earthanalysis",
+            storageBucket: "earthanalysis.appspot.com",
+            messagingSenderId: "975966447787",
+            appId: "1:975966447787:web:aa6d02c627e563a7392fee",
+            measurementId: "G-35YFT2HDZL"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, getDocs, setDoc, doc, orderBy, startAt, endAt } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+        const componentListener = () => {
+            document.querySelector('form').addEventListener('submit', async () => {
+                event.preventDefault();
+                document.querySelector('#search-results').innerHTML = '';
+
+                const auth = getAuth();
+                const search = document.querySelector('#search').value;
+                const currentUser = auth.currentUser;
+
+                const db = getFirestore(app);
+                const q = query(collection(db, "igusers"),
+                    where("username", ">=", search),
+                    where("username", "<=", search + "\uf8ff"),
+                );
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    if (doc.id != currentUser.uid) {
+                        const data = doc.data();
+
+                        const user = document.createElement('div');
+                        user.classList.add('user');
+                        user.innerHTML = `
+                        <div class="user-image">
+                            <img src="${data.profile_image || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}" alt="User image">
+                        </div>
+                        <div class="user-details">
+                            <div class="username"><a href="profile.html?id=${data.username}">${data.username}</a></div>
+                            <div class="name">${data.name}</div>
+                            <button class="follow-button" onclick="followUser(${data.id})">Follow</button>
+                        </div>
+                        `;
+                        user.querySelector('.user-image').addEventListener('click', () => {
+                            window.location = "profile.html?id=" + data.username;
+                        });
+                        document.querySelector('#search-results').appendChild(user);
+                    }
+                });
+            })
+        }
+
+        const initialPage = async () => {
+            const auth = getAuth();
+
+            await onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    document.querySelector("#myprofile").href = "profile.html?id=" + user.displayName;
+                } else {
+                    window.location = "login.html";
+                }
+            });
+        }
+
+        const followUser = async (uid) => {
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+
+            const db = getFirestore(app);
+            await setDoc(doc(db, "igusers", currentUser.uid, "following", uid), {});
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            componentListener();
+            initialPage();
+        });
+    </script>
 </body>
 
 </html>

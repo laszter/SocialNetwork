@@ -67,9 +67,15 @@
             flex-grow: 1;
         }
 
-        #username {
+        #displayname {
             font-size: 2rem;
             font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        #username {
+            font-size: 1rem;
+            font-weight: 400;
             margin-bottom: 10px;
         }
 
@@ -92,12 +98,16 @@
             font-weight: 600;
         }
 
+        #post-stats .count-number {
+            text-align: center;
+        }
+
         #bio {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
-        #edit-profile-button {
+        #profile-details button {
             padding: 10px 20px;
             background-color: #fff;
             border: 1px solid #dbdbdb;
@@ -106,7 +116,7 @@
             cursor: pointer;
         }
 
-        #edit-profile-button:hover {
+        #profile-details button:hover {
             background-color: #fafafa;
         }
 
@@ -140,7 +150,7 @@
         <a href="index.html" title="home"><i class="fa-solid fa-house"></i></a>
         <a href="searchusers.html" title="searchusers"><i class="fas fa-search"></i></a>
         <a href="post.html" title="post"><i class="fa-regular fa-square-plus"></i></a>
-        <a href="profile.html" title="profile"><i class="far fa-user"></i></a>
+        <a href="profile.html" title="profile" id="myprofile"><i class="far fa-user"></i></a>
     </div>
     <div id="header">
         <div id="logo">Instagram</div>
@@ -153,19 +163,23 @@
     <div id="content">
         <div id="profile-header">
             <div id="profile-image">
-                <img src="https://picsum.photos/200/200" alt="Profile image">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                    alt="Profile image">
             </div>
             <div id="profile-details">
-                <div id="username">johndoe</div>
+                <div id="displayname"></div>
+                <div id="username"></div>
                 <div id="post-stats">
-                    <div><strong>12</strong> posts</div>
-                    <div><strong>128</strong> followers</div>
-                    <div><strong>99</strong> following</div>
+                    <div class="count-number"><strong id="posts-count">0</strong>posts</div>
+                    <div class="count-number" id="followers-btn"><strong id="followers-count">0</strong>followers</div>
+                    <div class="count-number" id="following-btn"><strong id="following-count">0</strong>following</div>
                 </div>
                 <div id="bio">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
                 </div>
-                <button id="edit-profile-button">Edit Profile</button>
+                <button id="edit-profile-button" style="display: none;">Edit Profile</button>
+                <button id="message-button" style="display: none;">Message</button>
+                <input type="file" id="profile-image-input" style="display: none;" accept="image/*">
             </div>
         </div>
         <div id="post-grid">
@@ -219,13 +233,18 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-        
-        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            const signoutBtn = document.getElementById('signout-btn');
-            signoutBtn.addEventListener('click', function () {
-                const auth = getAuth();
+
+        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, getDocs, setDoc, updateDoc, doc, limit, arrayUnion } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+
+        const componentListener = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('id');
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+
+            document.getElementById('signout-btn').addEventListener('click', function () {
                 signOut(auth).then(() => {
                     // Sign-out successful.
                     window.location = 'login.html'
@@ -233,6 +252,102 @@
                     // An error happened.
                     console.log(error);
                 });
+            });
+
+            document.getElementById('followers-btn').addEventListener('click', function () {
+                window.location = 'follower.html?id=' + document.querySelector('#username').innerHTML;
+            });
+
+            document.getElementById('following-btn').addEventListener('click', function () {
+                window.location = 'following.html?id=' + document.querySelector('#username').innerHTML;
+            });
+
+            if (currentUser.displayName == username) {
+                document.getElementById('profile-image').addEventListener('click', function () {
+                    document.getElementById('profile-image-input').click();
+                });
+
+                document.getElementById("profile-image-input").addEventListener("change", async (event) => {
+                    const file = event.target.files[0];
+                    const fileName = file.name;
+                    const fileExtension = fileName.split(".").pop();
+
+                    const storageRef = ref(getStorage(), "ig_profile_images/" + currentUser.uid + "/profile_image." + fileExtension);
+                    const snapshot = await uploadBytes(storageRef, file);
+                    const downloadURL = await getDownloadURL(snapshot.ref);
+
+                    document.querySelector('#profile-image img').src = downloadURL;
+
+                    const db = getFirestore(app);
+                    await updateDoc(doc(db, "igusers", currentUser.uid), {
+                        profile_image: downloadURL
+                    });
+                });
+            } else {
+                document.getElementById('message-button').addEventListener('click', async () => {
+                    const db = getFirestore(app);
+                    const q = query(collection(db, "igusers"), where("username", "==", username), limit(1));
+                    const querySnapshot = await getDocs(q);
+                    if (querySnapshot.size > 0) {
+                        const docSnapshot = querySnapshot.docs[0];
+                        const data = docSnapshot.data();
+
+                        await updateDoc(doc(db, "igusers", currentUser.uid), {
+                            chatboxes: arrayUnion(docSnapshot.id)
+                        });
+
+                        window.location = 'chat.html?id=' + data.username;
+                    } else {
+                        window.location = 'index.html';
+                        return;
+                    }
+                });
+            }
+        }
+
+        const loadProfile = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('id');
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+
+            if (currentUser.displayName == username) {
+                document.getElementById('edit-profile-button').style.display = 'block';
+            } else {
+                document.getElementById('profile-image').onclick = null;
+                document.getElementById('profile-image-input').onchange = null;
+
+                document.getElementById('message-button').style.display = 'block';
+            }
+
+            const db = getFirestore(app);
+            const q = query(collection(db, "igusers"), where("username", "==", username), limit(1));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.size > 0) {
+                const docSnapshot = querySnapshot.docs[0];
+                const data = docSnapshot.data();
+
+                document.querySelector('#displayname').innerHTML = data.name;
+                document.querySelector('#username').innerHTML = data.username;
+
+                document.querySelector('#profile-image img').src = data.profile_image || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
+            } else {
+                window.location = 'index.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const auth = getAuth();
+
+            onAuthStateChanged(auth, (user) => {
+                if (!user) {
+                    window.location = "login.html";
+                } else {
+                    document.querySelector("#myprofile").href = "profile.html?id=" + user.displayName;
+
+                    loadProfile();
+                    componentListener();
+                }
             });
         });
     </script>

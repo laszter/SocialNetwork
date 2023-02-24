@@ -35,7 +35,7 @@
       font-weight: bold;
     }
 
-    input[type="text"],
+    input[type="email"],
     input[type="password"] {
       display: block;
       width: 100%;
@@ -77,8 +77,8 @@
 <body>
   <form>
     <h1>Instagram</h1>
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
     <label for="password">Password</label>
     <input type="password" id="password" name="password" required>
     <label id="error-msg-text"></label>
@@ -130,13 +130,12 @@
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const username = document.querySelector("#username").value;
+        const email = document.querySelector("#email").value;
         const password = document.querySelector("#password").value;
-        signInWithEmailAndPassword(auth, username, password)
+        signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             // Signed in
-            const user = userCredential.user;
-            // ...
+            window.location = "index.html";
           })
           .catch((error) => {
             const errorCode = error.code;
