@@ -38,7 +38,7 @@
       <ul>
       </ul>
     </div>
-    <div>
+    <div id="chat-area" style="width: 100%;">
       <div id="chat">
         <div class="message received">
           <div class="avatar">
@@ -83,7 +83,7 @@
       </div>
       <div id="message-input-container">
         <form>
-          <input type="text" placeholder="Type a message...">
+          <input type="text" placeholder="Type a message..." id="text-message">
           <button title="submit" type="submit"><i class="far fa-paper-plane"></i></button>
         </form>
       </div>
@@ -113,11 +113,14 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    let targetChat = null;
 
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-    import { getFirestore, query, where, getDoc, doc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+    import { getFirestore, query, where, addDoc, getDoc, doc, onSnapshot, collection, orderBy } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
     const loadChatData = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('id');
       const auth = getAuth();
       const currentUser = auth.currentUser;
       const db = getFirestore(app);
@@ -135,8 +138,56 @@
           </div>
         `;
 
+        li.addEventListener("click", (e) => {
+          document.querySelectorAll("#user-list ul li").forEach((li) => {
+            li.classList.remove("active");
+          });
+          e.currentTarget.classList.add("active");
+          document.querySelector("#chat").innerHTML = "";
+
+          const userId1 = currentUser.uid;
+          const userId2 = chatId;
+          targetChat = chatId;
+
+          const messagesRef = collection(db, "igmessages");
+          const chatQuery = query(messagesRef,
+            orderBy("timestamp", "asc"),
+            where("participants", "array-contains", [userId1, userId2])
+          );
+
+          onSnapshot(chatQuery, (snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+              if (change.type === "added") {
+                const message = change.doc.data();
+                console.log(message);
+              }
+            });
+          });
+        })
+
         document.querySelector("#user-list ul").appendChild(li);
+
+        if (userDoc.username == username) {
+          li.click();
+        }
       }
+
+      document.querySelector('form').addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!targetChat) return;
+
+        const messagesRef = collection(db, "igmessages");
+        const message = document.getElementById('text-message').value;
+        document.getElementById('text-message').value = "";
+
+        await addDoc(messagesRef, {
+          sender: currentUser.uid,
+          receiver: targetChat,
+          message: message,
+          timestamp: Date.now(),
+          participants: [currentUser.uid, targetChat]
+        });
+      })
     }
 
     document.addEventListener("DOMContentLoaded", () => {
